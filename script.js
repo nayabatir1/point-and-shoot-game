@@ -175,7 +175,7 @@ window.addEventListener("click", (e) => {
   ravens = ravens.filter(
     (r) => r.randomColor !== Object.values(pixColor.data).slice(0, 3).toString()
   );
-  console.log(len, ravens.length, "check");
+  console.log(Object.values(pixColor.data).slice(0, 3).toString());
 
   if (ravens.length !== len) {
     score++;
