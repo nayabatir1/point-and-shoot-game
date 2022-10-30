@@ -160,7 +160,7 @@ function animate(t) {
   ravens = ravens.filter((i) => !i.isRedundant);
   explosions = explosions.filter((i) => i.frame < i.totalFrames);
 
-  if (redundantRavens.length) gameOver = true;
+  // if (redundantRavens.length) gameOver = true;
 
   if (!gameOver) requestAnimationFrame(animate);
   else drawGameOver();
