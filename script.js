@@ -11,6 +11,13 @@ const timeInerval = 700;
 let time = 0;
 let score = 0;
 let gameOver = false;
+const ravenImage = new Image();
+ravenImage.src = "./image/raven.png";
+const explosionImage = new Image();
+explosionImage.src = "./image/boom.png";
+const explosionAudio = new Audio("./sound/boom.wav");
+explosionAudio.volume = 0.25;
+explosionAudio.preload = "auto";
 
 let ravens = [];
 let explosions = [];
@@ -26,8 +33,6 @@ class Raven {
     this.distanceY = Math.random() * 5 - 2.5;
     this.directionY = -1;
     this.isRedundant = false;
-    this.image = new Image();
-    this.image.src = "./image/raven.png";
     this.frame = 0;
     this.totalFrames = 6;
     this.randomColor = `${Math.floor(Math.random() * 255)},${Math.floor(
@@ -59,7 +64,7 @@ class Raven {
       this.height * this.ratio
     );
     ctx.drawImage(
-      this.image,
+      ravenImage,
       this.frame++ * this.width,
       0,
       this.width,
@@ -74,31 +79,27 @@ class Raven {
 
 class Explosion {
   constructor(x, y, ratio) {
-    this.image = new Image();
-    this.image.src = "./image/boom.png";
     this.width = 200;
     this.height = 179;
     this.ratio = ratio;
+    this.audio = explosionAudio.cloneNode();
     this.x = x;
     this.y = y;
     this.frame = 0;
     this.totalFrames = 5;
-    this.sound = new Audio();
-    this.sound.src = "./sound/boom.wav";
-    this.sound.volume = 0.25;
     this.counter = 0;
   }
 
   update() {
-    if (!this.frame) this.sound.play();
+    if (!this.frame) this.audio.play();
+
     this.counter++;
     if (this.counter % 10 === 0) this.frame++;
   }
 
   draw() {
-    console.log("here");
     ctx.drawImage(
-      this.image,
+      explosionImage,
       this.frame * this.width,
       0,
       this.width,
