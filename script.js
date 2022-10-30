@@ -171,6 +171,7 @@ animate(0);
 
 window.addEventListener("click", (e) => {
   const pixColor = ctx2.getImageData(e.x, e.y, 1, 1);
+  console.log(pixColor);
   const len = ravens.length;
   ravens = ravens.filter(
     (r) => r.randomColor !== Object.values(pixColor.data).slice(0, 3).toString()
