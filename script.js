@@ -31,7 +31,7 @@ class Raven {
     this.y = Math.random() * (canvas.height - this.height);
     this.distanceX = -1 * (Math.random() * 5 + 3);
     this.distanceY = Math.random() * 5 - 2.5;
-    this.directionY = -1;
+    this.directionY = 1;
     this.isRedundant = false;
     this.frame = 0;
     this.totalFrames = 6;
@@ -44,9 +44,8 @@ class Raven {
     this.x += this.distanceX;
     this.y += this.distanceY * this.directionY;
 
-    if (this.y <= 0) this.directionY = 1;
-    else if (this.y + this.height * this.ratio > canvas.height)
-      this.directionY = -1;
+    if (this.y < 0 || this.y > canvas.height - this.height * this.ratio)
+      this.directionY *= -1;
 
     if (this.frame === this.totalFrames) this.frame = 0;
 
