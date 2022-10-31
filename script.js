@@ -161,7 +161,10 @@ function animate(t) {
   ravens = ravens.filter((i) => !i.isRedundant);
   explosions = explosions.filter((i) => i.frame < i.totalFrames);
 
-  // if (redundantRavens.length) gameOver = true;
+  if (redundantRavens.length) {
+    gameOver = true;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
 
   if (!gameOver) requestAnimationFrame(animate);
   else drawGameOver();
@@ -171,11 +174,12 @@ animate(0);
 
 window.addEventListener("click", (e) => {
   const pixColor = ctx2.getImageData(e.x, e.y, 1, 1);
+
   const len = ravens.length;
+
   ravens = ravens.filter(
     (r) => r.randomColor !== Object.values(pixColor.data).slice(0, 3).toString()
   );
-  console.log(Object.values(pixColor.data).slice(0, 3).toString());
 
   if (ravens.length !== len) {
     score++;
