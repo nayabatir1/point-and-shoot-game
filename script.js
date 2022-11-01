@@ -7,7 +7,7 @@ const ctx2 = canvas2.getContext("2d");
 canvas.height = canvas2.height = innerHeight;
 canvas.width = canvas2.width = innerWidth;
 ctx.font = "50px Arial";
-const timeInerval = 700;
+const timeInerval = 1000;
 let time = 0;
 let score = 0;
 let gameOver = false;
